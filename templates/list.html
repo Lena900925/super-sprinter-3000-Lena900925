@@ -1,0 +1,36 @@
+{% extends "layout.html" %}
+{% block body %}
+{{ super() }}
+        <a href="{{ url_for('story_display')}}">
+            <input type="button" class="submitbutton" value="Add new User Story">
+    </a>
+
+<table border="1" width="100%">
+    <th>ID</th>
+    <th>Story Title</th>
+    <th>User Story</th>
+    <th>Acceptance_criteria</th>
+    <th>Business Value</th>
+    <th>Estimation (h)</th>
+    <th>Status</th>
+{% for story in stories %}
+    <tr>
+        <td>{{story.id}}</td>
+        <td>{{story.story_title}}</td>
+        <td>{{story.user_story}}</td>
+        <td>{{story.acceptance_criteria}}</td>
+        <td>{{story.business_value}}</td>
+        <td>{{story.estimation}}</td>
+        <td>{{story.status}}</td>
+        <td>
+            <a href="{{ url_for('delete_story', story_id=story.id)}}">
+            <i class="fa fa-trash fa-2x"></i></a>
+        <td>
+            <a href="{{ url_for('editing_story', story_id=story.id)}}">
+            <i class="fa fa-pencil fa-2x" aria-hidden="true"></i></a>
+        </td>
+    </tr>
+{% endfor %}
+</table>
+{% endblock %}
+
