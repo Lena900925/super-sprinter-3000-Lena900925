@@ -36,7 +36,7 @@ def new_story():
 
 @app.route('/story', methods = ['GET'])
 def story_display(name="- Add new Story"):
-    return render_template('form.html', name=name, form_action=url_for('new_story'))
+    return render_template('form.html', name=name)
 
 @app.route('/delete/<int:story_id>')
 def delete_story(story_id):
@@ -44,7 +44,7 @@ def delete_story(story_id):
     story.delete_instance()
     return redirect(url_for('listing'))
 
-@app.route('/editing/<int:story_id>', methods= ['POST'])
+@app.route('/story/<int:story_id>', methods= ['GET'])
 def editing_story(story_id):
     edited_story = Stories.select().where(Stories.id == story_id).get()
     title1 = edited_story.story_title
@@ -53,10 +53,10 @@ def editing_story(story_id):
     title4 = edited_story.business_value
     title5 = edited_story.estimation
     title6 = edited_story.status
-    return render_template('form.html', title1=title1, title2=title2, title3=title3, title4=title4, title5=title5, title6=title6, form_action=url_for('listing'))
+    return render_template('form.html', title1=title1, title2=title2, title3=title3, title4=title4, title5=title5, title6=title6)
 
 #Editor page [/story/<story_id>]
-@app.route('/story/<int:story_id>', methods = ['GET'])
+@app.route('/story/<int:story_id>', methods= ['POST'])
 def edit_story(name="- Edit Story"):
     return render_template('form.html', name=name)
 

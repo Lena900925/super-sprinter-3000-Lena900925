@@ -2,7 +2,7 @@
 {% block body %}
 {{ super() }}
 
-    <form action="{{ form_action }}" method='POST'>
+    <form action="{{ url_for('new_story') }}" method='POST'>
         <dl>
             <dt>Story Title:
                 <textarea name="story_title" rows="5" cols="60">{{ title1 }}</textarea>
@@ -10,13 +10,13 @@
                 <textarea name="user_story" rows="5" cols="60">{{ title2 }}</textarea>
             <dt>Acceptance Criteria:
                 <textarea name="acceptance_criteria" rows="5" cols="60">{{ title3 }}</textarea>
-            <dt>Business Value<input name="business_value" type="number" min="100" max="1500" step="100" value = "{{ title4 }}"/>
-            <dt>Estimation (h):<input name="estimation" type="number" min="0.5" max="40" step="0.5" value = "{{ title5 }}"/>
+            <dt>Business Value<input name="business_value" type="number" min="100" max="1500" step="100" value ="100"/>
+            <dt>Estimation (h):<input name="estimation" type="number" min="0.5" max="40" step="0.5" value ="0.5"/>
             <dt>Status:<select name="status">
-                    <option value="planning">Planning</option>
-                    <option value="todo">To Do</option>
-                    <option value="inprogress">In Progress</option>
-                    <option value="review">Review</option>
+                    <option value="Planning">Planning</option>
+                    <option value="To Do">To Do</option>
+                    <option value="In Progress">In Progress</option>
+                    <option value="Review">Review</option>
                     <option value="Done">Done</option>
             <input type="submit" class="submitbutton" value="Save">
         </dl>
