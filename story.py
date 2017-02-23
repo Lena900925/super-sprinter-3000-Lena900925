@@ -56,10 +56,9 @@ def edit_story(story_id):
     user_story.save()
     return redirect(url_for('listing'))
 
-@app.route('/delete/<int:story_id>', methods= ['POST'])
+@app.route('/delete/<int:story_id>', methods= ['GET'])
 def delete_story(story_id):
-    story = Stories.get(Stories.id == story_id)
-    story.delete_instance()
+    Stories.delete().where(Stories.id == story_id).execute()
     return redirect(url_for('listing'))
 
 if __name__== "__main__":
