@@ -1,15 +1,35 @@
 {% extends "layout.html" %}
 {% block body %}
 {{ super() }}
-
+{ % if user_story % }
+    <form action="{{ url_for('editing', story_id=user_story.id) }}" method='POST'>
+        <dl>
+            <dt>Story Title:
+                <textarea name="story_title" rows="5" cols="60"> {{ user_story.story_title }}</textarea>
+            <dt>User Story:
+                <textarea name="user_story" rows="5" cols="60"> {{ user_story.user_story }}</textarea>
+            <dt>Acceptance Criteria:
+                <textarea name="acceptance_criteria" rows="5" cols="60"> {{ user_story.acceptance_criteria }}</textarea>
+            <dt>Business Value<input name="business_value" type="number" min="100" max="1500" step="100" value ="{{ user_story.business_value }}"/>
+            <dt>Estimation (h):<input name="estimation" type="number" min="0.5" max="40" step="0.5" value ="{{ user_story.estimation }}"/>
+            <dt>Status:<select name="status">
+                    <option value="Planning">Planning</option>
+                    <option value="To Do">To Do</option>
+                    <option value="In Progress">In Progress</option>
+                    <option value="Review">Review</option>
+                    <option value="Done">Done</option>
+            <input type="submit" class="submitbutton" value="Update">
+        </dl>
+    </form>
+{ % else % }
     <form action="{{ url_for('new_story') }}" method='POST'>
         <dl>
             <dt>Story Title:
-                <textarea name="story_title" rows="5" cols="60">{{ title1 }}</textarea>
+                <textarea name="story_title" rows="5" cols="60"></textarea>
             <dt>User Story:
-                <textarea name="user_story" rows="5" cols="60">{{ title2 }}</textarea>
+                <textarea name="user_story" rows="5" cols="60"></textarea>
             <dt>Acceptance Criteria:
-                <textarea name="acceptance_criteria" rows="5" cols="60">{{ title3 }}</textarea>
+                <textarea name="acceptance_criteria" rows="5" cols="60"></textarea>
             <dt>Business Value<input name="business_value" type="number" min="100" max="1500" step="100" value ="100"/>
             <dt>Estimation (h):<input name="estimation" type="number" min="0.5" max="40" step="0.5" value ="0.5"/>
             <dt>Status:<select name="status">
@@ -21,4 +41,5 @@
             <input type="submit" class="submitbutton" value="Save">
         </dl>
     </form>
+{ % endif % }
 {% endblock %}

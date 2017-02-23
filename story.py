@@ -22,6 +22,10 @@ def listing(name=" "):
     stories=Stories.select()
     return render_template('list.html', stories=stories, name=name)
 
+@app.route('/story', methods = ['GET'])
+def story_display(name="- Add new Story"):
+    return render_template('form.html', name=name)
+
 #Adding page [/story]
 @app.route('/story_added', methods = ['POST'])
 def new_story():
@@ -34,32 +38,29 @@ def new_story():
     new_entry.save()
     return redirect(url_for('listing'))
 
-@app.route('/story', methods = ['GET'])
-def story_display(name="- Add new Story"):
-    return render_template('form.html', name=name)
+@app.route('/story/<int:story_id>', methods= ['GET'])
+def edit(story_id):
+    user_story = Stories.select().where(Stories.id == story_id).get()
+    return render_template("form.html", user_story=user_story)
 
-@app.route('/delete/<int:story_id>')
+#Editor page [/story/<story_id>]
+@app.route('/story/<int:story_id>', methods= ['POST'])
+def edit_story(story_id):
+    user_story = Stories.select().where(Stories.id == story_id).get()
+    user_story.story_title = request.form['story_title']
+    user_story.user_story = request.form['user_story']
+    user_story.acceptance_criteria = request.form['acceptance_criteria']
+    user_story.business_value = request.form['business_value']
+    user_story.estimation = request.form['estimation']
+    user_story.status = request.form['status']
+    user_story.save()
+    return redirect(url_for('listing'))
+
+@app.route('/delete/<int:story_id>', methods= ['POST'])
 def delete_story(story_id):
     story = Stories.get(Stories.id == story_id)
     story.delete_instance()
     return redirect(url_for('listing'))
-
-@app.route('/story/<int:story_id>', methods= ['GET'])
-def editing_story(story_id):
-    edited_story = Stories.select().where(Stories.id == story_id).get()
-    title1 = edited_story.story_title
-    title2 = edited_story.user_story
-    title3 = edited_story.acceptance_criteria
-    title4 = edited_story.business_value
-    title5 = edited_story.estimation
-    title6 = edited_story.status
-    return render_template('form.html', title1=title1, title2=title2, title3=title3, title4=title4, title5=title5, title6=title6)
-
-#Editor page [/story/<story_id>]
-@app.route('/story/<int:story_id>', methods= ['POST'])
-def edit_story(name="- Edit Story"):
-    return render_template('form.html', name=name)
-
 
 if __name__== "__main__":
     init_db()

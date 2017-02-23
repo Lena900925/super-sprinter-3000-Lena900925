@@ -4,8 +4,8 @@
         <a href="{{ url_for('story_display')}}">
             <input type="button" class="submitbutton" value="Add new User Story">
     </a>
-
-<table border="1" width="100%">
+<br>
+<table class="table">
     <th>ID</th>
     <th>Story Title</th>
     <th>User Story</th>
@@ -23,11 +23,11 @@
         <td>{{story.estimation}}</td>
         <td>{{story.status}}</td>
         <td>
-            <a href="{{ url_for('delete_story', story_id=story.id)}}">
-            <i class="fa fa-trash fa-2x"></i></a>
+            <form method="POST" action="{{ url_for('delete_story', story_id=story.id) }}">
+                <i class="fa fa-trash fa-2x"></i></form>
         <td>
-            <a href="{{ url_for('editing_story', story_id=story.id)}}">
-            <i class="fa fa-pencil fa-2x" aria-hidden="true"></i></a>
+            <form action="{{ url_for('edit', story_id=user_story.id) }}">
+                <i class="fa fa-pencil fa-2x" aria-hidden="true"></i></form>
         </td>
     </tr>
 {% endfor %}

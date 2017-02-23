@@ -8,6 +8,36 @@ dt {
     font-style: italic;
 }
 
+th{
+    margin-left: auto;
+    margin-right: auto;
+    border: 2px solid black;
+}
+
+td{
+    margin-left: auto;
+    margin-right: auto;
+    border: 1px solid black;
+}
+
 .submitbutton{
     display:block;
+}
+
+.table{
+    margin-left: auto;
+    margin-right: auto;
+    border: 1px solid black;
+    border-collapse: separate;
+    width: 80%;
+    text-align: center;
+    background-color: bisque;
+    color: black;
+}
+
+.cells{
+    margin-left: auto;
+    margin-right: auto;
+    border: 1px solid black;
+    border-collapse: separate;
 }
