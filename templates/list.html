@@ -1,6 +1,7 @@
 {% extends "layout.html" %}
 {% block body %}
 {{ super() }}
+    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
         <a href="{{ url_for('story_display')}}">
             <input type="button" class="submitbutton" value="Add new User Story">
     </a>

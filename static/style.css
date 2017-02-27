@@ -1,5 +1,5 @@
 body {
-        background-color: darksalmon;
+        background-color: lightcoral;
 }
 
 dt {
@@ -20,9 +20,6 @@ td{
     border: 1px solid black;
 }
 
-.submitbutton{
-    display:block;
-}
 
 .table{
     margin-left: auto;
@@ -35,9 +32,19 @@ td{
     color: black;
 }
 
-.cells{
-    margin-left: auto;
-    margin-right: auto;
-    border: 1px solid black;
-    border-collapse: separate;
+
+.submitbutton{
+    display:block;
+}
+
+.navbar-brand{
+    background-color: whitesmoke;
+}
+
+.container-fluid{
+    background-color: gray;
+}
+
+.navbar-header{
+    color: white;
 }
